@@ -8,8 +8,18 @@ import test.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    // AppConfig에서 구현체를 관리를 해서
+    // OrderServiceImpl 입장에서는 생성자를 통해 어떤 구현 객체가 들어올지 모른다.
+    // 오직 외부(AppConfig)에서 결정된다.
+    // 구현체에 의존하지 않고 추상화인(MemberRepository,DiscountPolicy)에만 의존한다.
+    private final MemberRepository memberRepository;
+    // final 키워드를 이용함으로써 생성자에 필수로 주입받아야함을 명시
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

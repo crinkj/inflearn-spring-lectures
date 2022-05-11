@@ -1,12 +1,21 @@
 package test.core.member;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import test.core.AppConfig;
 
 public class MemberServiceTest{
 
-    MemberService memberService = new MemberServiceImpl();
 
+    MemberService memberService;
+
+    // test실행전 무조건 실행, 테스트가 두개일시 이 메소드 두번 돈다.
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
     /**
      * - 개발한 기능을 실행해서 테스트 할 때 자바의 main 메서드를 통해서 실행하거나,
      * 웹어플리케이션의 컨트롤러를 통해서 해당 기능을 실행한다. 이러한 방법은 준비하고 실행하는데 오래걸리고,
