@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import test.core.AppConfig;
+import test.core.order.OrderServiceImpl;
 
 public class MemberServiceTest{
 
@@ -41,4 +42,5 @@ public class MemberServiceTest{
         // then
         Assertions.assertThat(member).isEqualTo(findMember);
     }
+
 }

@@ -1,11 +1,14 @@
 package test.core.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import test.core.discount.DiscountPolicy;
 import test.core.discount.FixDiscountPolicy;
 import test.core.member.Member;
 import test.core.member.MemberRepository;
 import test.core.member.MemoryMemberRepository;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     // AppConfig에서 구현체를 관리를 해서
@@ -16,6 +19,7 @@ public class OrderServiceImpl implements OrderService{
     // final 키워드를 이용함으로써 생성자에 필수로 주입받아야함을 명시
     private final DiscountPolicy discountPolicy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
