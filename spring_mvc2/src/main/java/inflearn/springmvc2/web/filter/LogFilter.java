@@ -1,4 +1,4 @@
-package inflearn.springmvc2.web;
+package inflearn.springmvc2.web.filter;
 
 
 import lombok.extern.slf4j.Slf4j;
